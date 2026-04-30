@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://fswof8vd05rh"]
+
+[ext_resource type="Script" uid="uid://bq66bwf1p35kj" path="res://Pickups/Coin/coin_pickup.gd" id="1_m5nal"]
+[ext_resource type="Texture2D" uid="uid://cs28srfcks28y" path="res://Assets/Art/Pickups/coins/star coin 1.png" id="1_sekvv"]
+[ext_resource type="Texture2D" uid="uid://bfm658yhnk848" path="res://Assets/Art/Pickups/coins/star coin 2.png" id="2_m5nal"]
+[ext_resource type="Texture2D" uid="uid://d1sigs0ngrwtp" path="res://Assets/Art/Pickups/coins/star coin 3.png" id="3_31570"]
+[ext_resource type="Texture2D" uid="uid://cc2c1obrondcu" path="res://Assets/Art/Pickups/coins/star coin 4.png" id="4_vqnrj"]
+[ext_resource type="Texture2D" uid="uid://0esclhci1uw6" path="res://Assets/Art/Pickups/coins/star coin 5.png" id="5_732uw"]
+[ext_resource type="Texture2D" uid="uid://daleq0dbhd8te" path="res://Assets/Art/Pickups/coins/star coin 6.png" id="6_1i7nd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7wtqi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sekvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_m5nal")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_31570")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vqnrj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_732uw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1i7nd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m5nal"]
+radius = 11.0
+
+[node name="CoinPickup" type="Node2D"]
+script = ExtResource("1_m5nal")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.01, 0.01)
+sprite_frames = SubResource("SpriteFrames_7wtqi")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_m5nal")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

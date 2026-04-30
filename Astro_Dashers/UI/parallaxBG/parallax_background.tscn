@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://6ux0nr8o6fk5"]
+
+[ext_resource type="Texture2D" uid="uid://xh03uob2a4g" path="res://Assets/Art/Background/spr_stars01.png" id="1_vtxer"]
+[ext_resource type="Texture2D" uid="uid://b3bdgq8drb2tk" path="res://Assets/Art/Background/spr_stars02.png" id="2_0mx51"]
+
+[node name="ParallaxBackground" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Stars1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(0, 2560)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Stars1"]
+texture = ExtResource("1_vtxer")
+centered = false
+offset = Vector2(-1000, 0)
+
+[node name="Stars2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 2560)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Stars2"]
+texture = ExtResource("2_0mx51")
+centered = false
+offset = Vector2(-1000, 0)

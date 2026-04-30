@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://p7riwqbdl0ib"]
+
+[ext_resource type="Script" uid="uid://cxcutynfyh2j6" path="res://GameScene/game_scene.gd" id="1_6ynty"]
+[ext_resource type="PackedScene" uid="uid://gpnnbvrbx0w" path="res://Player/player.tscn" id="1_objqk"]
+[ext_resource type="Texture2D" uid="uid://cs28srfcks28y" path="res://Assets/Art/Pickups/coins/star coin 1.png" id="3_kd12v"]
+[ext_resource type="PackedScene" uid="uid://6ux0nr8o6fk5" path="res://UI/parallaxBG/parallax_background.tscn" id="4_e2ns8"]
+[ext_resource type="Texture2D" uid="uid://bfm658yhnk848" path="res://Assets/Art/Pickups/coins/star coin 2.png" id="4_p67qj"]
+[ext_resource type="Texture2D" uid="uid://d1sigs0ngrwtp" path="res://Assets/Art/Pickups/coins/star coin 3.png" id="5_bc4rt"]
+[ext_resource type="Texture2D" uid="uid://cc2c1obrondcu" path="res://Assets/Art/Pickups/coins/star coin 4.png" id="6_isyfi"]
+[ext_resource type="Texture2D" uid="uid://0esclhci1uw6" path="res://Assets/Art/Pickups/coins/star coin 5.png" id="7_d2ra5"]
+[ext_resource type="Texture2D" uid="uid://daleq0dbhd8te" path="res://Assets/Art/Pickups/coins/star coin 6.png" id="8_e1wvl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qi60m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kd12v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_p67qj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bc4rt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_isyfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_d2ra5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_e1wvl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ynty"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_6urbc"]
+font_size = 40
+
+[node name="GameScene" type="Node2D" unique_id=1770559862]
+script = ExtResource("1_6ynty")
+
+[node name="Player" parent="." unique_id=1566114928 instance=ExtResource("1_objqk")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=559536626]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=23164661]
+position = Vector2(15, 15)
+scale = Vector2(0.025, 0.025)
+sprite_frames = SubResource("SpriteFrames_qi60m")
+autoplay = "default"
+centered = false
+
+[node name="MC" type="MarginContainer" parent="CanvasLayer" unique_id=967888048]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/MC" unique_id=397051772]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Score: 420"
+label_settings = SubResource("LabelSettings_6ynty")
+
+[node name="TouchScreenLabel" type="Label" parent="CanvasLayer/MC" unique_id=1807286945]
+layout_mode = 2
+text = "Touch Screen to Start"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MC" unique_id=1234075720]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/MC/HBoxContainer" unique_id=729544484]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer/MC/HBoxContainer" unique_id=388414648]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "10,000"
+label_settings = SubResource("LabelSettings_6urbc")
+
+[node name="ParallaxBackground" parent="." unique_id=1598993785 instance=ExtResource("4_e2ns8")]

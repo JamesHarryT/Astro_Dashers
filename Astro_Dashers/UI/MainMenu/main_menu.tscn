@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://b33l06gvg36xh"]
+
+[ext_resource type="Script" uid="uid://bry73svvenjv1" path="res://UI/MainMenu/main_menu.gd" id="1_t17p2"]
+[ext_resource type="Texture2D" uid="uid://b6vv8l7woub16" path="res://icon.svg" id="2_3jj5y"]
+[ext_resource type="PackedScene" uid="uid://6ux0nr8o6fk5" path="res://UI/parallaxBG/parallax_background.tscn" id="3_3jj5y"]
+
+[node name="MainMenu" type="Control" unique_id=2110204043]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t17p2")
+
+[node name="CL" type="CanvasLayer" parent="." unique_id=1778195253]
+
+[node name="MC" type="MarginContainer" parent="CL" unique_id=2020365231]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Label" type="Label" parent="CL/MC" unique_id=1445472471]
+layout_mode = 2
+size_flags_vertical = 0
+text = "ASTRO DASHERS"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="TouchScreenButton" parent="CL/MC" unique_id=1170450785]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(206, 256)
+texture_normal = ExtResource("2_3jj5y")
+
+[node name="Shop" type="TouchScreenButton" parent="CL/MC" unique_id=1400817661]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(206, 384)
+texture_normal = ExtResource("2_3jj5y")
+
+[node name="Credits" type="TouchScreenButton" parent="CL/MC" unique_id=202792519]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(206, 512)
+texture_normal = ExtResource("2_3jj5y")
+
+[node name="ParallaxBackground" parent="." unique_id=1814607929 instance=ExtResource("3_3jj5y")]
+
+[connection signal="pressed" from="CL/MC/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CL/MC/Shop" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CL/MC/Credits" to="." method="_on_play_button_pressed"]

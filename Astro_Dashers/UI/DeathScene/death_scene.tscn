@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bavv7ig0pmbsu"]
+
+[ext_resource type="Texture2D" uid="uid://b6vv8l7woub16" path="res://icon.svg" id="1_fmmmx"]
+[ext_resource type="Script" uid="uid://b24qmwb0j1xdh" path="res://UI/DeathScene/death_scene.gd" id="1_q76e7"]
+[ext_resource type="PackedScene" uid="uid://cwfueg1ec6r15" path="res://UI/DeathScene/rewarded.tscn" id="3_4t453"]
+
+[node name="DeathScene" type="Control" unique_id=1601498328]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q76e7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=93670686]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=108859935]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 100
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer" unique_id=1959897281]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "YOU DIED!!!!
+Score: 42069
+Highscore:69420"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryButton" type="TouchScreenButton" parent="CanvasLayer/MarginContainer" unique_id=1955123571]
+self_modulate = Color(0, 1, 0, 1)
+position = Vector2(206, 400)
+texture_normal = ExtResource("1_fmmmx")
+
+[node name="QuitButton" type="TouchScreenButton" parent="CanvasLayer/MarginContainer" unique_id=543026]
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(207, 550)
+texture_normal = ExtResource("1_fmmmx")
+
+[node name="revive" parent="CanvasLayer" unique_id=1895257016 instance=ExtResource("3_4t453")]
+offset_left = 207.0
+offset_top = 250.0
+offset_right = 207.0
+offset_bottom = 250.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="coin_mult" parent="CanvasLayer" unique_id=1604464547 instance=ExtResource("3_4t453")]
+offset_left = 207.0
+offset_top = 700.0
+offset_right = 207.0
+offset_bottom = 700.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+ad_type = 1
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+
+[editable path="CanvasLayer/revive"]
+[editable path="CanvasLayer/coin_mult"]

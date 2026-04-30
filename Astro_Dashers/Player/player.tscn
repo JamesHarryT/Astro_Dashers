@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://gpnnbvrbx0w"]
+
+[ext_resource type="Script" uid="uid://cq5a4by0a11xv" path="res://Player/player.gd" id="1_0ixno"]
+[ext_resource type="Texture2D" uid="uid://b33unr4nqtq1n" path="res://Assets/Art/RaccoonCharacter/RaccoonBody.png" id="2_82sbu"]
+[ext_resource type="Texture2D" uid="uid://nk0r4se7qq5j" path="res://Assets/Art/RaccoonCharacter/RaccoonArms.png" id="2_oggl1"]
+[ext_resource type="Texture2D" uid="uid://vgjm1v1rmi3c" path="res://Assets/Art/RaccoonCharacter/RaccoonTail.png" id="2_r7bm7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uco02"]
+radius = 13.0
+height = 44.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w3cf7"]
+normal = Vector2(1, 0)
+distance = -140.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2b6yb"]
+normal = Vector2(-1, 0)
+distance = -140.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lcugc"]
+radius = 13.0
+height = 44.0
+
+[node name="Player" type="CharacterBody2D" unique_id=2061704916]
+collision_mask = 30
+script = ExtResource("1_0ixno")
+
+[node name="TailSprite" type="Sprite2D" parent="." unique_id=2120898995]
+position = Vector2(0, 22)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_r7bm7")
+
+[node name="ArmsSprite" type="Sprite2D" parent="." unique_id=1150680457]
+z_index = 1
+position = Vector2(0, 8)
+scale = Vector2(0.2, 0.25)
+texture = ExtResource("2_oggl1")
+
+[node name="RaccoonBodySprite" type="Sprite2D" parent="." unique_id=1724506662]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_82sbu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1558978337]
+shape = SubResource("CapsuleShape2D_uco02")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1019555288]
+offset = Vector2(0, -50)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="Boundaries" type="StaticBody2D" parent="Camera2D" unique_id=1994954771]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Boundaries" unique_id=333617643]
+shape = SubResource("WorldBoundaryShape2D_w3cf7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Camera2D/Boundaries" unique_id=895476187]
+shape = SubResource("WorldBoundaryShape2D_2b6yb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=871073071]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1975487484]
+shape = SubResource("CapsuleShape2D_lcugc")
+
+[node name="ObstacleSpawner" type="Node2D" parent="." unique_id=78529166]
+position = Vector2(0, -400)
+
+[node name="ObstacleTimer" type="Timer" parent="." unique_id=1332881120]
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
