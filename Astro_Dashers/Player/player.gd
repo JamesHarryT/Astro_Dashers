@@ -79,7 +79,7 @@ func _process(delta: float) -> void:
 	calcTailAndArmRot()
 
 func update_particles(velocity: Vector2) -> void:
-	if (velocity.length() / moveSpeed) > 0.5:
+	if (velocity.length() / moveSpeed) > 0.33:
 		particle_fx.set_velocity(max(velocity.x, velocity.y))
 		particle_fx.set_emitting(true)
 	else:

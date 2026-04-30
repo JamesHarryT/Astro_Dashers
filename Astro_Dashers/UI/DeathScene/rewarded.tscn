@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cwfueg1ec6r15"]
 
-[ext_resource type="Texture2D" uid="uid://b6vv8l7woub16" path="res://icon.svg" id="1_duxqb"]
+[ext_resource type="FontFile" uid="uid://d1o4d00b1w876" path="res://Assets/CherryBombOne-Regular.ttf" id="2_45leh"]
 
 [sub_resource type="GDScript" id="GDScript_62pvg"]
 script/source = "extends Control
@@ -18,12 +18,19 @@ enum AD_TYPE {REVIVE, COIN_MULT, COSMETIC}
 
 @onready var show_button: TouchScreenButton = $Show
 @onready var failed_load_lbl: Label = $failed_load_lbl
+@onready var button_lbl: Label = $Show/button_lbl
 
 func _ready():
 	if GameManager.has_revive == false and ad_type == AD_TYPE.REVIVE:
 		print(\"player used revive already, no ad loading\")
 		return #don't give option to load ad, player can't revive right now
-		
+	
+	match ad_type:
+		AD_TYPE.REVIVE:
+			button_lbl.text = \"Revive\\n(watch ad)\"
+		AD_TYPE.COIN_MULT:
+			button_lbl.text = \"2x Coins\\n(watch ad)\"
+
 	MobileAds.initialize()
 
 	# Define the callback for when the user earns the reward
@@ -117,6 +124,18 @@ func destroy():
 		show_button.hide()
 "
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duxqb"]
+size = Vector2(150, 100)
+
+[sub_resource type="LabelSettings" id="LabelSettings_10ybp"]
+font = ExtResource("2_45leh")
+font_size = 20
+outline_size = 15
+outline_color = Color(0.27387273, 0.27387273, 0.27387273, 1)
+shadow_size = 25
+shadow_color = Color(1, 1, 1, 1)
+shadow_offset = Vector2(0, 0)
+
 [node name="Rewarded" type="Control" unique_id=1895257016]
 layout_mode = 3
 anchors_preset = 0
@@ -127,7 +146,25 @@ script = SubResource("GDScript_62pvg")
 [node name="Show" type="TouchScreenButton" parent="." unique_id=211627201]
 visible = false
 self_modulate = Color(0, 0, 1, 1)
-texture_normal = ExtResource("1_duxqb")
+shape = SubResource("RectangleShape2D_duxqb")
+
+[node name="button_lbl" type="Label" parent="Show" unique_id=1173027880]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -31.5
+offset_right = 51.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Revive
+(watch Ad)"
+label_settings = SubResource("LabelSettings_10ybp")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="failed_load_lbl" type="Label" parent="." unique_id=1294135597]
 visible = false

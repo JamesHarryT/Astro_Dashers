@@ -1,0 +1,12 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://slr84yiwphud"]
+
+[ext_resource type="FontFile" uid="uid://d1o4d00b1w876" path="res://Assets/CherryBombOne-Regular.ttf" id="1_4dgc5"]
+
+[resource]
+font = ExtResource("1_4dgc5")
+font_size = 40
+outline_size = 15
+outline_color = Color(0.27387273, 0.27387273, 0.27387273, 1)
+shadow_size = 25
+shadow_color = Color(1, 1, 1, 1)
+shadow_offset = Vector2(0, 0)

@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://bavv7ig0pmbsu"]
 
-[ext_resource type="Texture2D" uid="uid://b6vv8l7woub16" path="res://icon.svg" id="1_fmmmx"]
 [ext_resource type="Script" uid="uid://b24qmwb0j1xdh" path="res://UI/DeathScene/death_scene.gd" id="1_q76e7"]
+[ext_resource type="LabelSettings" uid="uid://fq2v188vihb5" path="res://Assets/label_settings/text_30.tres" id="2_4t453"]
 [ext_resource type="PackedScene" uid="uid://cwfueg1ec6r15" path="res://UI/DeathScene/rewarded.tscn" id="3_4t453"]
+[ext_resource type="LabelSettings" uid="uid://yy0csi0crmoa" path="res://Assets/label_settings/button.tres" id="3_avpji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q76e7"]
+size = Vector2(150, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4t453"]
+size = Vector2(150, 100)
 
 [node name="DeathScene" type="Control" unique_id=1601498328]
 top_level = true
@@ -22,7 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 100
+theme_override_constants/margin_top = 50
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer/MarginContainer" unique_id=1959897281]
 layout_mode = 2
@@ -31,32 +38,65 @@ size_flags_vertical = 0
 text = "YOU DIED!!!!
 Score: 42069
 Highscore:69420"
+label_settings = ExtResource("2_4t453")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RetryButton" type="TouchScreenButton" parent="CanvasLayer/MarginContainer" unique_id=1955123571]
-self_modulate = Color(0, 1, 0, 1)
-position = Vector2(206, 400)
-texture_normal = ExtResource("1_fmmmx")
+position = Vector2(270, 450)
+shape = SubResource("RectangleShape2D_q76e7")
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/RetryButton" unique_id=1465137416]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -29.5
+offset_right = 64.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+label_settings = ExtResource("3_avpji")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="QuitButton" type="TouchScreenButton" parent="CanvasLayer/MarginContainer" unique_id=543026]
-self_modulate = Color(1, 0, 0, 1)
-position = Vector2(207, 550)
-texture_normal = ExtResource("1_fmmmx")
+position = Vector2(270, 600)
+shape = SubResource("RectangleShape2D_4t453")
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/QuitButton" unique_id=1621489154]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -29.5
+offset_right = 64.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Menu"
+label_settings = ExtResource("3_avpji")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="revive" parent="CanvasLayer" unique_id=1895257016 instance=ExtResource("3_4t453")]
-offset_left = 207.0
-offset_top = 250.0
-offset_right = 207.0
-offset_bottom = 250.0
+offset_left = 270.0
+offset_top = 300.0
+offset_right = 270.0
+offset_bottom = 300.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
 [node name="coin_mult" parent="CanvasLayer" unique_id=1604464547 instance=ExtResource("3_4t453")]
-offset_left = 207.0
-offset_top = 700.0
-offset_right = 207.0
-offset_bottom = 700.0
+offset_left = 270.0
+offset_top = 750.0
+offset_right = 270.0
+offset_bottom = 750.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 ad_type = 1

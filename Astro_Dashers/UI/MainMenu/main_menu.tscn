@@ -1,8 +1,18 @@
 [gd_scene format=3 uid="uid://b33l06gvg36xh"]
 
 [ext_resource type="Script" uid="uid://bry73svvenjv1" path="res://UI/MainMenu/main_menu.gd" id="1_t17p2"]
-[ext_resource type="Texture2D" uid="uid://b6vv8l7woub16" path="res://icon.svg" id="2_3jj5y"]
+[ext_resource type="LabelSettings" uid="uid://yy0csi0crmoa" path="res://Assets/label_settings/button.tres" id="2_3jj5y"]
 [ext_resource type="PackedScene" uid="uid://6ux0nr8o6fk5" path="res://UI/parallaxBG/parallax_background.tscn" id="3_3jj5y"]
+[ext_resource type="LabelSettings" uid="uid://fq2v188vihb5" path="res://Assets/label_settings/text_30.tres" id="3_h8rmy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8rmy"]
+size = Vector2(150, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyy2y"]
+size = Vector2(150, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trkrl"]
+size = Vector2(150, 100)
 
 [node name="MainMenu" type="Control" unique_id=2110204043]
 layout_mode = 3
@@ -22,30 +32,87 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
+theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="Label" type="Label" parent="CL/MC" unique_id=1445472471]
+[node name="title" type="Label" parent="CL/MC" unique_id=1445472471]
 layout_mode = 2
 size_flags_vertical = 0
 text = "ASTRO DASHERS"
+label_settings = ExtResource("2_3jj5y")
+horizontal_alignment = 1
+
+[node name="credits" type="Label" parent="CL/MC" unique_id=1795700204]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Created By: 
+Harrison \"Crabdancer\" Tinley"
+label_settings = ExtResource("3_h8rmy")
 horizontal_alignment = 1
 
 [node name="PlayButton" type="TouchScreenButton" parent="CL/MC" unique_id=1170450785]
-modulate = Color(0, 1, 0, 1)
-position = Vector2(206, 256)
-texture_normal = ExtResource("2_3jj5y")
+position = Vector2(270, 300)
+shape = SubResource("RectangleShape2D_h8rmy")
+
+[node name="Label" type="Label" parent="CL/MC/PlayButton" unique_id=2146493607]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -29.5
+offset_right = 64.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+label_settings = ExtResource("2_3jj5y")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Shop" type="TouchScreenButton" parent="CL/MC" unique_id=1400817661]
-modulate = Color(1, 1, 0, 1)
-position = Vector2(206, 384)
-texture_normal = ExtResource("2_3jj5y")
+position = Vector2(270, 450)
+shape = SubResource("RectangleShape2D_iyy2y")
+
+[node name="Label" type="Label" parent="CL/MC/Shop" unique_id=144801713]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -29.5
+offset_right = 64.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Store"
+label_settings = ExtResource("2_3jj5y")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Credits" type="TouchScreenButton" parent="CL/MC" unique_id=202792519]
-modulate = Color(1, 0, 1, 1)
-position = Vector2(206, 512)
-texture_normal = ExtResource("2_3jj5y")
+position = Vector2(270, 600)
+shape = SubResource("RectangleShape2D_trkrl")
+
+[node name="Label" type="Label" parent="CL/MC/Credits" unique_id=937788372]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -29.5
+offset_right = 64.0
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Options"
+label_settings = ExtResource("2_3jj5y")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ParallaxBackground" parent="." unique_id=1814607929 instance=ExtResource("3_3jj5y")]
 
