@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b33unr4nqtq1n" path="res://Assets/Art/RaccoonCharacter/RaccoonBody.png" id="2_82sbu"]
 [ext_resource type="Texture2D" uid="uid://nk0r4se7qq5j" path="res://Assets/Art/RaccoonCharacter/RaccoonArms.png" id="2_oggl1"]
 [ext_resource type="Texture2D" uid="uid://vgjm1v1rmi3c" path="res://Assets/Art/RaccoonCharacter/RaccoonTail.png" id="2_r7bm7"]
+[ext_resource type="PackedScene" uid="uid://by7bxbv3cfj2w" path="res://utility/particle_fx.tscn" id="5_k53q1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uco02"]
 radius = 13.0
@@ -35,6 +36,10 @@ z_index = 1
 position = Vector2(0, 8)
 scale = Vector2(0.2, 0.25)
 texture = ExtResource("2_oggl1")
+
+[node name="particle_fx" parent="ArmsSprite" unique_id=277576632 instance=ExtResource("5_k53q1")]
+position = Vector2(0, 48)
+scale = Vector2(5, 4)
 
 [node name="RaccoonBodySprite" type="Sprite2D" parent="." unique_id=1724506662]
 scale = Vector2(0.2, 0.2)

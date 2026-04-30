@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://by7bxbv3cfj2w"]
+
+[ext_resource type="Script" uid="uid://cs1vpovmtlmf" path="res://utility/particle_fx.gd" id="1_xyyla"]
+[ext_resource type="Texture2D" uid="uid://vgjm1v1rmi3c" path="res://Assets/Art/RaccoonCharacter/RaccoonTail.png" id="2_ye3eq"]
+
+[sub_resource type="Curve" id="Curve_ye3eq"]
+_data = [Vector2(0, 1), 0.0, -0.28571418, 0, 0, Vector2(1, 0), -2.5531924, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ye3eq"]
+offsets = PackedFloat32Array(0, 0.39473686, 0.81578946)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1, 0.288518, 0.28851798, 0.28851798, 1)
+
+[node name="particle_fx" type="Node2D" unique_id=277576632]
+script = ExtResource("1_xyyla")
+
+[node name="CPU_particles" type="CPUParticles2D" parent="." unique_id=1342476421]
+emitting = false
+amount = 12
+texture = ExtResource("2_ye3eq")
+direction = Vector2(0, 1)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+angular_velocity_min = 15.0
+angular_velocity_max = 45.0
+scale_amount_min = 0.0
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_ye3eq")
+color_ramp = SubResource("Gradient_ye3eq")

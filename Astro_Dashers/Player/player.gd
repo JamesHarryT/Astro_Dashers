@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-
-
 #NODES
 @onready var tail_sprite: Sprite2D = $TailSprite
 @onready var raccoon_body_sprite: Sprite2D = $RaccoonBodySprite
@@ -9,6 +7,8 @@ extends CharacterBody2D
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var obstacle_spawner: Node2D = $ObstacleSpawner
 @onready var obstacle_timer: Timer = $ObstacleTimer
+@onready var particle_fx: Node2D = $ArmsSprite/particle_fx
+
 
 #SCENES
 const ASTROID_OBSTACLE = preload("res://Obstacles/astroid_obstacle/astroid_obstacle.tscn")
@@ -41,6 +41,7 @@ func _input(event: InputEvent) -> void:
 			velocity = movePlayer(event.position) * moveSpeed
 		if event is InputEventScreenTouch and not event.pressed:
 			startDeathTimer()
+		update_particles(velocity)
 
 func movePlayer(touchPos: Vector2) -> Vector2:
 	var screenSize = get_viewport().get_visible_rect().size
@@ -76,7 +77,15 @@ func _process(delta: float) -> void:
 	camera_2d.global_position.x = 0.0 #keeps camera stationary
 	velocity *= 0.95
 	calcTailAndArmRot()
-	
+
+func update_particles(velocity: Vector2) -> void:
+	if (velocity.length() / moveSpeed) > 0.5:
+		particle_fx.set_velocity(max(velocity.x, velocity.y))
+		particle_fx.set_emitting(true)
+	else:
+		particle_fx.set_velocity(0.0)
+		particle_fx.set_emitting(false)
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	isAlive = false
 	killPlayer()
@@ -101,12 +110,13 @@ func _on_obstacle_timer_timeout() -> void:
 func killPlayer() -> void:
 	if isAlive == false:
 		print("IM DEAD")
+		particle_fx.set_emitting(false)
 		GameManager.playerDeath.emit()
 		
 
 func startDeathTimer() -> void:
 	isTimerActive = true
-	await get_tree().create_timer(0.33).timeout
+	await get_tree().create_timer(0.5).timeout
 	if isTimerActive == true:
 		isAlive = false
 		killPlayer()

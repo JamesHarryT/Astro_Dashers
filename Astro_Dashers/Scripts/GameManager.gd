@@ -31,7 +31,7 @@ func loadData() -> void:
 
 func reset_vars() -> void:
 	playerScore = 0
-	has_revive = false
+	has_revive = true
 
 signal playerDeath
 signal reloadGame(watchedAd: bool)
