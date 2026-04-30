@@ -1,3 +1,5 @@
+* text=auto
+
 # Godot 4+ specific ignores
 .godot/
 .nomedia
@@ -15,3 +17,8 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
 Astro_Dashers/Scripts/AdMobConfig.gd
+
+# Exports / builds
+Exports/
+*.apk
+*.aab
